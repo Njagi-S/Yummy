@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from myapp.models import *
+from myapp.models import BookTable
 
 # Create your views here.
 def index(request):
@@ -27,4 +27,21 @@ def gallery(request):
     return render(request, 'gallery.html')
 
 def booking(request):
-    return render(request, 'booking.html')
+    if request.method == 'POST':
+        mybooking = BookTable(
+            name = request.POST['name'],
+            email=request.POST['email'],
+            phone=request.POST['phone'],
+            date=request.POST['date'],
+            time=request.POST['time'],
+            guests=request.POST['guests'],
+            message=request.POST['message'],
+            )
+        mybooking.save()
+        return redirect('/showbookings')
+    else:
+        return render(request, 'booking.html')
+
+def showbookings(request):
+    allbookings = BookTable.objects.all()
+    return render(request, 'showbookings.html', {'bookings': allbookings})

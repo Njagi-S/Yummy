@@ -23,4 +23,6 @@ urlpatterns = [
     
     path('booking/', views.booking, name = 'booking'),
     
+    path('showbookings/', views.showbookings, name = 'showbookings'),
+    
 ]
