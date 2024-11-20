@@ -25,3 +25,6 @@ def menu(request):
 
 def gallery(request):
     return render(request, 'gallery.html')
+
+def booking(request):
+    return render(request, 'booking.html')

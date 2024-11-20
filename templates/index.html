@@ -57,6 +57,7 @@
           <li><a href="{%url 'events'%}">Events</a></li>
           <li><a href="{%url 'chefs'%}">Chefs</a></li>
           <li><a href="{%url 'gallery'%}">Gallery</a></li>
+          <li><a href="{%url 'booking'%}">Book A Table</a></li>
           <li class="dropdown"><a href="#"><span>Dropdown</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
             <ul>
               <li><a href="#">Dropdown 1</a></li>
@@ -79,7 +80,7 @@
         <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
       </nav>
 
-      <a class="btn-getstarted" href="index.html#book-a-table">Book a Table</a>
+      <a class="btn-getstarted" href="{%url 'booking'%}">Book a Table</a>
 
     </div>
   </header>
@@ -778,7 +779,7 @@
           </script>
           <div class="swiper-wrapper">
 
-            <div class="swiper-slide event-item d-flex flex-column justify-content-end" style="background-image: url(assets/img/events-1.jpg)">
+            <div class="swiper-slide event-item d-flex flex-column justify-content-end" style="background-image: url('../static/assets/img/events-1.jpg')">
               <h3>Custom Parties</h3>
               <div class="price align-self-start">$99</div>
               <p class="description">
@@ -786,7 +787,7 @@
               </p>
             </div><!-- End Event item -->
 
-            <div class="swiper-slide event-item d-flex flex-column justify-content-end" style="background-image: url(assets/img/events-2.jpg)">
+            <div class="swiper-slide event-item d-flex flex-column justify-content-end" style="background-image: url('../static/assets/img/events-2.jpg')">
               <h3>Private Parties</h3>
               <div class="price align-self-start">$289</div>
               <p class="description">
@@ -794,7 +795,7 @@
               </p>
             </div><!-- End Event item -->
 
-            <div class="swiper-slide event-item d-flex flex-column justify-content-end" style="background-image: url(assets/img/events-3.jpg)">
+            <div class="swiper-slide event-item d-flex flex-column justify-content-end" style="background-image: url('../static/assets/img/events-3.jpg')">
               <h3>Birthday Parties</h3>
               <div class="price align-self-start">$499</div>
               <p class="description">
@@ -802,7 +803,7 @@
               </p>
             </div><!-- End Event item -->
 
-            <div class="swiper-slide event-item d-flex flex-column justify-content-end" style="background-image: url(assets/img/events-4.jpg)">
+          <div class="swiper-slide event-item d-flex flex-column justify-content-end" style="background-image: url('../static/assets/img/events-4.jpg')">
               <h3>Wedding Parties</h3>
               <div class="price align-self-start">$899</div>
               <p class="description">
@@ -907,7 +908,7 @@
 
         <div class="row g-0" data-aos="fade-up" data-aos-delay="100">
 
-          <div class="col-lg-4 reservation-img" style="background-image: url(assets/img/reservation.jpg);"></div>
+          <div class="col-lg-4 reservation-img" style="background-image: url('../static/assets/img/reservation.jpg');"></div>
 
           <div class="col-lg-8 d-flex align-items-center reservation-form-bg" data-aos="fade-up" data-aos-delay="200">
             <form method="POST" >

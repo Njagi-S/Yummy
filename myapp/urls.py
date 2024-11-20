@@ -21,4 +21,6 @@ urlpatterns = [
     
     path('gallery/', views.gallery, name = 'gallery'),
     
+    path('booking/', views.booking, name = 'booking'),
+    
 ]
