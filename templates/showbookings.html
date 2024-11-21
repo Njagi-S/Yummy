@@ -27,8 +27,8 @@
                 <td>{{ x.guests }}</td>
                 <td>{{ x.message }}</td>
                 <td>
-                    <a href="" class="btn btn-outline-warning">EDIT</a>
-                    <a href="" class="btn btn-outline-danger">DELETE</a>
+                    <a href="/editbookings/{{ x.id }}" class="btn btn-outline-warning">EDIT</a>
+                    <a href="/deletebookings/{{ x.id }}" class="btn btn-outline-danger">DELETE</a>
                     <a href="" class="btn btn-outline-success">PAY</a>
                 </td>
             </tr>
