@@ -21,3 +21,20 @@ class ContactTable(models.Model):
     
     def __str__(self):
         return self.name
+
+
+class ImageModel(models.Model):
+    image = models.ImageField(upload_to='images/')  # Field to upload images to 'images/' directory
+    title = models.CharField(max_length=50)  # Field for the image title
+    price = models.CharField(max_length=50)  # Field for the price (stored as text)
+
+    def __str__(self):
+        return self.title  # Display the title as the string representation
+
+class Member(models.Model):
+    name = models.CharField(max_length=100)  # Full name of the member.
+    username = models.CharField(max_length=100)  # Username for the member.
+    password = models.CharField(max_length=64)  # Password, typically hashed.
+
+    def __str__(self):
+        return self.name  # Returns the name of the member when the object is printed.

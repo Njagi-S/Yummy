@@ -1,10 +1,28 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from myapp.models import BookTable, ContactTable
-from myapp.forms import BookTableForm, ContactTableForm
+from myapp.models import BookTable, ContactTable,Member, ImageModel
+from myapp.forms import BookTableForm, ContactTableForm, ImageUploadForm
 
 # Render the homepage
 def index(request):
-    return render(request, 'index.html')
+    if request.method == 'POST':  # If the request is POST, process login credentials
+        # Check if a member with provided username and password exists
+        if Member.objects.filter(
+                username=request.POST['username'],
+                password=request.POST['password'],
+        ).exists():
+            # Fetch the member details
+            members = Member.objects.get(
+                username=request.POST['username'],
+                password=request.POST['password'],
+            )
+            # Render the index page if login is successful
+            return render(request, 'index.html', {'members': members})
+        else:
+            # Redirect back to the login page if credentials are invalid
+            return render(request, 'login.html')
+    else:
+        # Render the login page for GET requests
+        return render(request, 'login.html')
 
 # Render the starter page
 def starter(request):
@@ -112,3 +130,51 @@ def updatecontacts(request, id):
         return redirect('/showcontacts')  # Redirect to the contacts list
     else:
         return render(request, 'editcontacts.html')  # Re-render the editing form if invalid
+
+def upload_image(request):
+    # Check if the HTTP method is POST (indicates form submission).
+    if request.method == 'POST':
+        # Create an instance of the ImageUploadForm, populated with the submitted data and files.
+        form = ImageUploadForm(request.POST, request.FILES)
+        # Validate the form inputs.
+        if form.is_valid():
+            form.save()  # Save the valid form data into the database.
+            return redirect('/showimage')  # Redirect to the 'showimage' page after a successful upload.
+    else:
+        # If the request method is GET, create a blank form instance.
+        form = ImageUploadForm()
+    # Render the 'upload_image.html' template with the form for the user to fill.
+    return render(request, 'upload_image.html', {'form': form})
+
+# Function to display all uploaded images
+def show_image(request):
+    # Query all image records from the database.
+    images = ImageModel.objects.all()
+    # Render the 'show_image.html' template, passing the retrieved images to the context.
+    return render(request, 'show_image.html', {'images': images})
+
+# Function to delete an uploaded image by its ID
+def imagedelete(request, id):
+    # Retrieve the image object from the database using the provided ID.
+    image = ImageModel.objects.get(id=id)
+    # Delete the retrieved image object from the database.
+    image.delete()
+    # Redirect to the 'showimage' page after successful deletion.
+    return redirect('/showimage')
+
+# Handles user registration
+def register(request):
+    if request.method == 'POST':  # Process registration form if it's a POST request
+        members = Member(
+            name=request.POST['name'],
+            username=request.POST['username'],
+            password=request.POST['password'],
+        )
+        members.save()  # Save the new member to the database
+        return redirect('/login')  # Redirect to the login page
+    else:
+        return render(request, 'register.html')  # Render the registration page for GET requests
+
+# Renders the login page
+def login(request):
+    return render(request, 'login.html')
