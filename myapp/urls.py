@@ -54,4 +54,10 @@ urlpatterns = [
     # Maps the '/imagedelete/<int:id>' URL to the `imagedelete` view function.
     # Captures the integer `id` from the URL and passes it as a parameter to the view.
     # This route enables the deletion of an image record identified by its unique ID.
+    
+    path('pay/', views.pay, name='pay'),
+    
+    path('stk/', views.stk, name='stk'),
+    
+    path('token/', views.token, name='token'),
 ]
